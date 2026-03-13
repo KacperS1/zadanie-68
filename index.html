@@ -51,19 +51,20 @@
 
     <section id="main1">
         <section id="blok1">
+
             <img src="pszczola.jpg" alt="pszczoła na fioletowym kwiatku" id="img1">
 
             <br>
 
-            <input type="radio" name="filtr" value="blur">Blur
+            <input type="radio" name="filtr" id="blur">Blur
 
              <br>
 
-            <input type="radio" name="filtr" value="sepia">Sepia
+            <input type="radio" name="filtr" id="sepia">Sepia
 
              <br>
 
-            <input type="radio" name="filtr" value="invert">Negatyw 
+            <input type="radio" name="filtr" id="invert">Negatyw 
 
             <br>
 
@@ -72,6 +73,7 @@
         </section>
 
         <section id="blok2">
+
             <img src="pomarancza.jpg" alt="drzewo pomarańczy" id="img2">
 
             <br>
@@ -83,6 +85,7 @@
             <input type="button" value="Czarno-biały" class="przycisk-styl" onclick="ustawCzarnoBialy()">
 
         </section>
+
     </section>
     
     <section id="main2">
@@ -108,37 +111,30 @@
             <input type="range" id="suwakJasnosc" min="0" max="250" value="100">
 
             <input type="button" value="Zastosuj" class="przycisk-styl" onclick="zastosujJasnosc()">
-            
+
         </section>
     </section>
 
     <footer>
         <a href="http://www.css.com/">Zobacz inne efekty obrazu</a>
-        <p>Stronę wykonał</p>
+        <p>Stronę wykonał: Twój Numer PESEL</p>
     </footer>
 
     <script>
+   
         function zastosujFiltr1() {
-            const obraz = document.getElementById('img1');
-            const opcje = document.getElementsByName('filtr');
-            let wybranyFiltr = "";
-
-            for (const opcja of opcje) {
-                if (opcja.checked) {
-                    wybranyFiltr = opcja.value;
-                    break;
-                }
-            }
-
-            if (wybranyFiltr === "blur") {
-                obraz.style.filter = "blur(5px)";
-            } else if (wybranyFiltr === "sepia") {
+            let obraz = document.getElementById('img1');
+            
+            if (document.getElementById('blur').checked) {
+                obraz.style.filter = "blur(6px)";
+            } else if (document.getElementById('sepia').checked) {
                 obraz.style.filter = "sepia(100%)";
-            } else if (wybranyFiltr === "invert") {
+            } else if (document.getElementById('invert').checked) {
                 obraz.style.filter = "invert(100%)";
             }
         }
 
+   
         function ustawKolor() {
             document.getElementById('img2').style.filter = "grayscale(0%)";
         }
@@ -147,16 +143,19 @@
             document.getElementById('img2').style.filter = "grayscale(100%)";
         }
 
+        
         function zastosujPrzezroczystosc() {
-            const wartosc = document.getElementById('suwakPrzezroczystosc').value;
-            document.getElementById('img3').style.filter = `opacity(${wartosc}%)`;
+            let suwak = document.getElementById('suwakPrzezroczystosc');
+            let obraz = document.getElementById('img3');
+            obraz.style.filter = "opacity(" + suwak.value + "%)";
         }
 
+
         function zastosujJasnosc() {
-            const wartosc = document.getElementById('suwakJasnosc').value;
-            document.getElementById('img4').style.filter = `brightness(${wartosc}%)`;
+            let suwak = document.getElementById('suwakJasnosc');
+            let obraz = document.getElementById('img4');
+            obraz.style.filter = "brightness(" + suwak.value + "%)";
         }
     </script>
 </body>
-
 </html>
